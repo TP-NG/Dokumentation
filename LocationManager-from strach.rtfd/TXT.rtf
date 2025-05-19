@@ -1,0 +1,643 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\ftech\fcharset77 Symbol;
+\f3\froman\fcharset0 Times-Bold;\f4\fnil\fcharset128 HiraginoSans-W3;\f5\fnil\fcharset0 AppleColorEmoji;
+\f6\fmodern\fcharset0 Courier-Bold;\f7\fmodern\fcharset0 Courier;\f8\froman\fcharset0 Times-Roman;
+\f9\froman\fcharset0 TimesNewRomanPSMT;\f10\froman\fcharset0 Times-Italic;\f11\froman\fcharset0 TimesNewRomanPS-BoldMT;
+}
+{\colortbl;\red255\green255\blue255;\red42\green75\blue126;\red0\green0\blue0;\red63\green108\blue175;
+\red191\green191\blue191;}
+{\*\expandedcolortbl;;\cssrgb\c21176\c37255\c56863;\cssrgb\c0\c0\c0;\cssrgb\c30980\c50588\c74118;
+\csgray\c79525;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid1\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid101\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid2}
+{\list\listtemplateid3\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid201\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid3}
+{\list\listtemplateid4\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{disc\}}{\leveltext\leveltemplateid301\'01\uc0\u8226 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid4}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}{\listoverride\listid3\listoverridecount0\ls3}{\listoverride\listid4\listoverridecount0\ls4}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww22820\viewh14680\viewkind0
+\deftab720
+\pard\pardeftab720\sl276\slmult1\partightenfactor0
+
+\f0\b\fs28 \cf2 1. Ziel und Zweck der App\
+\pard\pardeftab720\sl276\slmult1\sa480\partightenfactor0
+
+\f1\b0\fs22 \cf3 Die App dient zur Aufzeichnung von GPS-Positionen in sogenannten Tracking-Sessions. Zus\'e4tzlich k\'f6nnen einzelne, spontane Standorte mit Kommentar und Bild gespeichert werden. Optional k\'f6nnen Nutzer Kommentare und Bilder zu einzelnen Punkten hinzuf\'fcgen.\
+\pard\pardeftab720\sl276\slmult1\partightenfactor0
+
+\f0\b\fs28 \cf2 2. Zielgruppe / Benutzerprofil\
+\pard\pardeftab720\sl276\slmult1\sa480\partightenfactor0
+
+\f1\b0\fs22 \cf3 Die App richtet sich an Privatnutzer, Outdoor-Fans, Spazierg\'e4nger, Radfahrer oder Reisende, die ihre Bewegungen aufzeichnen, dokumentieren oder kommentieren m\'f6chten \'96 ohne komplexe Sportanalyse oder Cloud-Anbindung.\
+\pard\pardeftab720\sl276\slmult1\partightenfactor0
+
+\f0\b\fs28 \cf2 3. Glossar\
+\pard\tx20\tx360\tx360\pardeftab720\li360\fi-360\sl276\slmult1\sa200\partightenfactor0
+\ls1\ilvl0
+\f2\b0\fs22 \cf3 {\listtext	\uc0\u8226 	}
+\f1 Tracking-Session: Eine zeitlich zusammenh\'e4ngende Aufzeichnung mehrerer GPS-Punkte.\
+\ls1\ilvl0
+\f2 {\listtext	\uc0\u8226 	}
+\f1 SavedLocation: Ein einzelner gespeicherter Standortpunkt mit GPS-Daten und optionalem Kommentar/Bild.\
+\ls1\ilvl0
+\f2 {\listtext	\uc0\u8226 	}
+\f1 Core Data: Lokale Datenbank von Apple f\'fcr strukturierte Datenhaltung.\
+\ls1\ilvl0
+\f2 {\listtext	\uc0\u8226 	}
+\f1 Core Location: Framework zur Erfassung der aktuellen GPS-Position.\
+\ls1\ilvl0
+\f2 {\listtext	\uc0\u8226 	}
+\f1 MapKit: Framework zur Darstellung von Karten in iOS-Apps.\
+\pard\tx20\tx360\tx360\pardeftab720\li360\fi-360\sl276\slmult1\sa480\partightenfactor0
+\ls1\ilvl0
+\f2 \cf3 {\listtext	\uc0\u8226 	}
+\f1 DatePicker: UI-Komponente zur Auswahl eines Datums.\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f0\b\fs28 \cf2 4. Funktionale Anforderungen\
+\pard\pardeftab720\sl276\slmult1\partightenfactor0
+
+\fs26 \cf4 4.1 Tracking-Funktionen\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f1\b0\fs22 \cf3 - Starten und Beenden einer Tracking-Session\
+- Automatisches Speichern von GPS-Positionen in Intervallen\
+- Speichern von spontanen Einzelpunkten mit Kommentar und Bild\
+- Hintergrund-Tracking\
+\pard\pardeftab720\sl276\slmult1\partightenfactor0
+
+\f0\b\fs26 \cf4 4.2 Datenverwaltung (Core Data)\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f1\b0\fs22 \cf3 - Speicherung aller Sessions und zugeh\'f6riger Punkte\
+- Unabh\'e4ngige Einzelpunkte\
+- GPS, Zeit, Reihenfolge, Kommentar, Bild\
+\pard\pardeftab720\sl276\slmult1\partightenfactor0
+
+\f0\b\fs26 \cf4 4.3 Benutzeroberfl\'e4che (SwiftUI)\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f1\b0\fs22 \cf3 - Haupt-View mit Position, Start/Stop, Kamera, Bildvorschau\
+- Eigene Views f\'fcr Punkteliste, Karte, Auswertung\
+- In Karte: verschiebbare Box mit DatePicker und Session-/Punkteliste\
+\pard\pardeftab720\sl276\slmult1\partightenfactor0
+
+\f0\b\fs26 \cf4 4.4 Weitere Funktionen\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f1\b0\fs22 \cf3 - Exportfunktion (z.\uc0\u8239 B. GPX)\
+\pard\pardeftab720\sl276\slmult1\sa480\partightenfactor0
+\cf3 - Dark Mode Unterst\'fctzung\
+\pard\pardeftab720\sl276\slmult1\partightenfactor0
+
+\f0\b\fs28 \cf2 5. Nicht-funktionale Anforderungen\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f1\b0\fs22 \cf3 - iOS 16+\
+- SwiftUI-Interface\
+- Nur lokale Speicherung\
+\pard\pardeftab720\sl276\slmult1\sa480\partightenfactor0
+\cf3 - Datenschutz: keine Cloud, keine Accounts\
+\pard\pardeftab720\sl276\slmult1\partightenfactor0
+
+\f0\b\fs28 \cf2 6. Technologien\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f1\b0\fs22 \cf3 - Sprache: Swift\
+- UI: SwiftUI\
+- Standort: Core Location\
+- Datenhaltung: Core Data\
+\pard\pardeftab720\sl276\slmult1\sa480\partightenfactor0
+\cf3 - Kartenanzeige: MapKit\
+\pard\pardeftab720\sl276\slmult1\partightenfactor0
+
+\f0\b\fs28 \cf2 7. Abgrenzung / Nicht enthalten\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f1\b0\fs22 \cf3 - Keine Benutzerkonten oder Login\
+- Keine Synchronisation mit der Cloud\
+- Keine komplexen Trainingsanalysen oder Fitnessfunktionen\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\pardeftab720\partightenfactor0
+
+\f3\b\fs24 \cf0 \expnd0\expndtw0\kerning0
+Projektstruktur (SwiftUI + Core Data + MVVM-ish)
+\f1\b0\fs22 \cf3 \kerning1\expnd0\expndtw0 \
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+\cf3 \
+LocationManagerApp/\
+\uc0\u9474 \
+
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  
+\f5 \uc0\u55357 \u56513 
+\f1  Resources/\
+\uc0\u9474    \u9492 \u9472 \u9472  Assets.xcassets\
+\uc0\u9474    \u9492 \u9472 \u9472  LaunchScreen.storyboard (falls genutzt)\
+\uc0\u9474 \
+
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  
+\f5 \uc0\u55357 \u56513 
+\f1  Core/\
+\uc0\u9474    
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  LocationManager.swift\
+\uc0\u9474    
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  LocationService.swift (z.\u8239 B. f\'fcr Geocoding, Permissions)\
+\uc0\u9474    \u9492 \u9472 \u9472  Extensions.swift (Datum, Map etc.)\
+\uc0\u9474 \
+
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  
+\f5 \uc0\u55357 \u56513 
+\f1  Data/\
+\uc0\u9474    
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  Models/\
+\uc0\u9474    \u9474    
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  TrackingSession+CoreDataClass.swift\
+\uc0\u9474    \u9474    
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  SavedLocation+CoreDataClass.swift\
+\uc0\u9474    \u9474    \u9492 \u9472 \u9472  CoreDataModel.xcdatamodeld\
+\uc0\u9474    \u9492 \u9472 \u9472  Persistence/\
+\uc0\u9474        \u9492 \u9472 \u9472  PersistenceController.swift\
+\uc0\u9474 \
+
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  
+\f5 \uc0\u55357 \u56513 
+\f1  Views/\
+\uc0\u9474    
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  ContentView.swift\
+\uc0\u9474    
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  MapView.swift\
+\uc0\u9474    
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  ListView.swift\
+\uc0\u9474    
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  DetailView.swift\
+\uc0\u9474    \u9492 \u9472 \u9472  EvaluationView.swift\
+\uc0\u9474 \
+
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  
+\f5 \uc0\u55357 \u56513 
+\f1  ViewModels/\
+\uc0\u9474    
+\f4 \'84\'a5
+\f1 \uc0\u9472 \u9472  TrackingSessionViewModel.swift\
+\uc0\u9474    \u9492 \u9472 \u9472  LocationListViewModel.swift\
+\uc0\u9474 \
+\uc0\u9492 \u9472 \u9472  LocationManagerApp.swift\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f5\fs36 \cf0 \expnd0\expndtw0\kerning0
+\uc0\u55357 \u56550 
+\f3\b  Core Data Modell\
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f5\b0\fs28 \cf0 \uc0\u55357 \u57321 
+\f3\b  Entity: 
+\f6\fs30\fsmilli15210 TrackingSession
+\f3\fs28 \
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1404\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth600\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth2546\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf0 Attribut\cell 
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 Typ\cell 
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 Optional?\cell 
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 Beschreibung\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1404\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth600\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth2546\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f7\b0\fs26 \cf0 trackID
+\f8\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 UUID\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Nein\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Eindeutige ID der Session\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1404\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth600\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth2546\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f7\fs26 \cf0 startDate
+\f8\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Date\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Nein\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Startzeitpunkt der Session\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1404\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth600\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth2546\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f7\fs26 \cf0 endDate
+\f8\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Date\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f5 \cf0 \uc0\u9989 
+\f8  Ja\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Endezeitpunkt der Session\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1404\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth600\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth2546\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f7\fs26 \cf0 name
+\f8\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 String\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f5 \cf0 \uc0\u9989 
+\f8  Ja\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Benutzerdefinierter Name\cell \lastrow\row
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f5 \cf0 \uc0\u55357 \u56599 
+\f8  
+\f3\b Beziehung:
+\f8\b0 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls2\ilvl0
+\f7\fs26 \cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+locations
+\f8\fs24 : To-Many zu 
+\f7\fs26 SavedLocation
+\f8\fs24 , inverse: 
+\f7\fs26 session
+\f8\fs24 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls2\ilvl0
+\f3\b \cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Delete Rule
+\f8\b0 : 
+\f7\fs26 Cascade
+\f8\fs24  (wenn Session gel\'f6scht wird, auch alle Locations)\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f1\fs22 \cf3 \kerning1\expnd0\expndtw0 \
+\pard\pardeftab720\sa280\partightenfactor0
+
+\f5\fs28 \cf0 \expnd0\expndtw0\kerning0
+\uc0\u55357 \u57318 
+\f3\b  Entity: 
+\f6\fs30\fsmilli15210 SavedLocation
+\f3\fs28 \
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1404\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth1166\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth3754\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf0 Attribut\cell 
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 Typ\cell 
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 Optional?\cell 
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 Beschreibung\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1404\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth1166\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth3754\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f7\b0\fs26 \cf0 latitude
+\f8\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Double\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Nein\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Breitengrad\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1404\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth1166\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth3754\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f7\fs26 \cf0 longitude
+\f8\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Double\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Nein\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 L\'e4ngengrad\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1404\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth1166\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth3754\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f7\fs26 \cf0 timestamp
+\f8\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Date\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Nein\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Zeitpunkt der Aufzeichnung\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1404\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth1166\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth3754\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f7\fs26 \cf0 order
+\f8\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Int32\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Nein\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Reihenfolge der Punkte\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1404\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth1166\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth3754\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f7\fs26 \cf0 comment
+\f8\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 String\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f5 \cf0 \uc0\u9989 
+\f8  Ja\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Optionaler Textkommentar\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1404\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth1166\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth3754\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f7\fs26 \cf0 imageData
+\f8\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Binary Data\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f5 \cf0 \uc0\u9989 
+\f8  Ja\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Optionales Bild (z.
+\f9 \uc0\u8239 
+\f8 B. als JPEG-Daten)\cell \lastrow\row
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sa240\partightenfactor0
+
+\f5 \cf0 \uc0\u55357 \u56599 
+\f8  
+\f3\b Beziehung:
+\f8\b0 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls3\ilvl0
+\f7\fs26 \cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+session
+\f8\fs24 : To-One zu 
+\f7\fs26 TrackingSession
+\f8\fs24 , inverse: 
+\f7\fs26 locations
+\f8\fs24 \
+\pard\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls3\ilvl0
+\f3\b \cf0 \kerning1\expnd0\expndtw0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+Delete Rule
+\f8\b0 : 
+\f7\fs26 Nullify
+\f8\fs24  oder 
+\f7\fs26 No Action
+\f8\fs24  (je nachdem, ob ein Punkt allein bestehen darf)\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f1\fs22 \cf3 \kerning1\expnd0\expndtw0 \
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f5\fs36 \cf0 \expnd0\expndtw0\kerning0
+\uc0\u55357 \u56589 
+\f3\b  Empfehlung f\'fcr dein Projekt\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3900\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1267\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth8705\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf0 Beziehung\cell 
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 Optional?\cell 
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 Empfehlung\cell 
+\pard\intbl\itap1\pardeftab720\qc\partightenfactor0
+\cf0 Begr\'fcndung\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3900\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1267\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth8705\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f7\b0\fs26 \cf0 TrackingSession.locations
+\f8\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Nein\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f5 \cf0 \uc0\u9989 
+\f8  Pflicht\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Eine Session 
+\f10\i sollte
+\f8\i0  immer eine oder mehrere Locations haben\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth3900\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2160
+\clvertalc \clshdrawnil \clwWidth1027\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth1267\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx6480
+\clvertalc \clshdrawnil \clwWidth8705\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f7\fs26 \cf0 SavedLocation.session
+\f8\fs24 \cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f5 \cf0 \uc0\u9989 
+\f8  Ja\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+
+\f5 \cf0 \uc0\u9989 
+\f8  Optional\cell 
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 Damit auch 
+\f3\b einzelne Punkte ohne Session
+\f8\b0  gespeichert werden k\'f6nnen (laut Pflichtenheft)\cell \lastrow\row
+\pard\pardeftab720\partightenfactor0
+\cf0 \
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f1\fs22 \cf3 \kerning1\expnd0\expndtw0 \
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sa298\partightenfactor0
+
+\f5\fs36 \cf0 \expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3 \uc0\u9881 \u65039 
+\f3\b  Notwendige Info.plist-Eintr\'e4ge (Datenschutz)\
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f8\b0\fs24 \cf0 \'d6ffne deine 
+\f7\fs26 Info.plist
+\f8\fs24  und f\'fcge folgende Schl\'fcssel hinzu:\
+\pard\intbl\itap1\pardeftab720\sa280\partightenfactor0
+
+\f5\fs28 \cf0 \uc0\u55357 \u57313 
+\f3\b  1. F\'fcr Standortzugriff:\
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth6865\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth7849\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720\qc\partightenfactor0
+
+\fs24 \cf0 Key\nestcell 
+\pard\intbl\itap2\pardeftab720\qc\partightenfactor0
+\cf0 Wert (Beschreibung, die der Nutzer sieht)\nestcell \nestrow
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth6865\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth7849\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720\partightenfactor0
+
+\f7\b0\fs26 \cf0 NSLocationWhenInUseUsageDescription
+\f8\fs24 \nestcell 
+\pard\intbl\itap2\pardeftab720\partightenfactor0
+\cf0 \'84Diese App ben\'f6tigt deinen Standort, um Bewegungen aufzuzeichnen.\'93\nestcell \nestrow
+
+\itap2\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth6865\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx4320
+\clvertalc \clshdrawnil \clwWidth7849\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720\partightenfactor0
+
+\f7\fs26 \cf0 NSLocationAlwaysAndWhenInUseUsageDescription
+\f8\fs24 \nestcell 
+\pard\intbl\itap2\pardeftab720\partightenfactor0
+\cf0 \'84Erlaube bitte dauerhaft Standortzugriff, um Routen im Hintergrund zu erfassen.\'93\nestcell \lastrow\nestrow
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 \
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f5 \cf0 \uc0\u55357 \u56524 
+\f8  Xcode zeigt diese Texte, wenn das iPhone um Erlaubnis fragt.\
+\pard\intbl\itap1\pardeftab720\sa280\partightenfactor0
+
+\f5\fs28 \cf0 \uc0\u55357 \u56628 
+\f3\b  2. F\'fcr Hintergrund-Tracking (optional, aber empfohlen):\
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f8\b0\fs24 \cf0 Gehe zu deinem 
+\f3\b Target 
+\f11 \uc0\u8594 
+\f3  Capabilities 
+\f11 \uc0\u8594 
+\f3  Background Modes
+\f8\b0 \uc0\u8232 
+\f5 \uc0\u9989 
+\f8  Aktiviere:\
+\pard\intbl\itap1\tx220\tx720\pardeftab720\li720\fi-720\sa240\partightenfactor0
+\ls4\ilvl0\cf0 \kerning1\expnd0\expndtw0 \outl0\strokewidth0 {\listtext	\uc0\u8226 	}\expnd0\expndtw0\kerning0
+\outl0\strokewidth0 \strokec3  Location updates\
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f5 \cf0 \uc0\u55357 \u56525 
+\f8  Das erlaubt der App, GPS auch im Hintergrund zu verwenden (z.
+\f9 \uc0\u8239 
+\f8 B. bei ausgeschaltetem Bildschirm).\
+\pard\intbl\itap1\pardeftab720\partightenfactor0
+\cf0 \outl0\strokewidth0 \
+\
+
+\itap2\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap2\pardeftab720\partightenfactor0
+\cf0 {{\NeXTGraphic Pasted Graphic.png \width15540 \height11040 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\pard\intbl\itap2\pardeftab720\partightenfactor0
+\cf0 \
+
+\itap3\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadl100 \clpadr100 \gaph\cellx8640
+
+\itap4\trowd \taflags1 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clbrdrt\brdrs\brdrw20\brdrcf5 \clbrdrl\brdrs\brdrw20\brdrcf5 \clbrdrb\brdrs\brdrw20\brdrcf5 \clbrdrr\brdrs\brdrw20\brdrcf5 \clpadl100 \clpadr100 \gaph\cellx8640
+\pard\intbl\itap4\pardeftab720\partightenfactor0
+\cf0 {{\NeXTGraphic Pasted Graphic 1.png \width19280 \height12540 \appleattachmentpadding0 \appleembedtype0 \appleaqc
+}¬}\pard\intbl\itap4\pardeftab720\partightenfactor0
+\cf0 \nestcell \lastrow\nestrow\nestcell \lastrow\nestrow\nestcell \lastrow\nestrow\cell \lastrow\row
+\pard\pardeftab720\sa298\partightenfactor0
+
+\f3\b\fs36 \cf0 \
+\
+\pard\pardeftab720\sl276\slmult1\sa200\partightenfactor0
+
+\f1\b0\fs22 \cf3 \kerning1\expnd0\expndtw0 \
+}
