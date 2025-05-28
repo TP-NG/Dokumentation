@@ -1,0 +1,294 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2822
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;\f1\fnil\fcharset0 .SFNS-Regular;\f2\fnil\fcharset0 AppleColorEmoji;
+\f3\fnil\fcharset0 .SFNS-Bold;\f4\fnil\fcharset0 .AppleSystemUIFontMonospaced-Regular;\f5\fnil\fcharset0 HelveticaNeue-Bold;
+\f6\froman\fcharset0 Times-Bold;\f7\froman\fcharset0 Times-Roman;\f8\froman\fcharset0 Times-Italic;
+\f9\fnil\fcharset0 HelveticaNeue;}
+{\colortbl;\red255\green255\blue255;\red14\green14\blue14;\red49\green49\blue49;}
+{\*\expandedcolortbl;;\cssrgb\c6700\c6700\c6700;\cssrgb\c25098\c25098\c25098;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww11520\viewh8320\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 Memory\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+\cf0 \
+
+\f1 \uc0\u11835 
+\f0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\fs34 \cf2 \uc0\u55358 \u56813 
+\f3\b  Warum wird GPS beim Tab-Wechsel gestoppt?
+\f1\b0\fs28 \
+\
+Wenn du in einer 
+\f4 TabView
+\f1  von einem Tab (z.\uc0\u8239 B. 
+\f4 LiveLocationView
+\f1 ) weg wechselst:\
+\pard\tqr\tx100\tx260\li260\fi-260\sl324\slmult1\sb240\partightenfactor0
+\cf2 	\'95	SwiftUI kann die 
+\f5\b View entladen oder pausieren
+\f1\b0 , je nach Speicher und Zustand.\
+	\'95	Wenn dein 
+\f4 LiveLocationManager
+\f1  als 
+\f4 @StateObject
+\f1  in der View deklariert ist, 
+\f5\b lebt er nur so lange wie die View
+\f1\b0 .\
+\
+
+\f2 \uc0\u10145 \u65039 
+\f1  Beim Tab-Wechsel wird der 
+\f4 LiveLocationManager
+\f1  dann 
+\f5\b zerst\'f6rt
+\f1\b0 , und 
+\f4 stopUpdatingLocation()
+\f1  wird intern aufgerufen.\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 \
+
+\f1 \uc0\u11835 
+\f0 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf2 \
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\fs34 \cf2 \uc0\u9989 
+\f3\b  L\'f6sung: Den LocationManager app-weit verwalten
+\f1\b0\fs28 \
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f3\b\fs30 \cf2 Variante 1: Als @StateObject im TabView oder App halten
+\f1\b0\fs28 \
+\
+1. In deiner 
+\f4 App
+\f1  oder 
+\f4 MainTabView
+\f1 :\
+@StateObject var locationManager = LiveLocationManager()\
+\
+2. Dann an 
+\f4 LiveLocationView
+\f1  \'fcbergeben:\
+LiveLocationView(locationManager: locationManager)\
+\
+3. Und in der View:\
+struct LiveLocationView: View \{\
+    @ObservedObject var locationManager: LiveLocationManager()\
+    ...\
+\}\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2 \cf2 \uc0\u9989 
+\f1  So bleibt der LocationManager 
+\f5\b lebendig
+\f1\b0 , auch wenn du Tabs wechselst.\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f3\b\fs30 \cf2 Variante 2: Singleton-Ansatz (falls du\'92s global brauchst)\
+\
+1.\
+class LiveLocationManager: NSObject, ObservableObject, CLLocationManagerDelegate \{\
+    static let shared = LiveLocationManager()\
+    ...\
+\}\
+\
+2. 
+\f1\b0\fs28 Dann \'fcberall mit:\
+@StateObject private var locationManager = LiveLocationManager.shared\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2 \cf2 \uc0\u55357 \u56481 
+\f1  Diese Variante ist ok, wenn du wirklich nur einen Manager brauchst \'96 aber achte darauf, nicht versehentlich doppelte Instanzen zu erzeugen.\
+\
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f3\b\fs30 \cf2 \
+GPS\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\b0 \cf2 \uc0\u55357 \u56633 
+\f3\b  H\'f6hendifferenz (einfach)\
+let start = locations.first?.altitude ?? 0\
+let end = locations.last?.altitude ?? 0\
+let difference = end - start\
+\
+
+\f2\b0 \uc0\u55357 \u56633 
+\f3\b  Gesamtanstieg (alle positiven H\'f6henanstiege aufsummieren)\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f1\b0\fs28 \cf2 var totalAscent: CLLocationDistance = 0\
+\
+for i in 1..<locations.count \{\
+    let delta = locations[i].altitude - locations[i-1].altitude\
+    if delta > 0 \{\
+        totalAscent += delta\
+    \}\
+\}\
+\
+Das ergibt die 
+\f5\b kumulierte Steigung
+\f1\b0  (z.\uc0\u8239 B. 450\u8239 m Aufstieg), wie du es von Sportuhren kennst.\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\fs30 \cf2 \uc0\u55357 \u56633 
+\f3\b  Optional: Gesamtabstieg (f\'fcr Wander- oder Rad-Tracking)\
+\
+var totalDescent: CLLocationDistance = 0\
+\
+for i in 1..<locations.count \{\
+    let delta = locations[i].altitude - locations[i-1].altitude\
+    if delta < 0 \{\
+        totalDescent += abs(delta)\
+    \}\
+\}\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f2\b0\fs34 \cf2 \uc0\u55357 \u56550 
+\f3\b  Wo speichern?
+\f1\b0\fs28 \
+\
+Du kannst neue Felder zu deinem 
+\f4 TrackingSession
+\f1  hinzuf\'fcgen:\
+\
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrt\brdrnil \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1413\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth706\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth2599\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sa240\qc\partightenfactor0
+
+\f6\b\fs24 \cf0 \expnd0\expndtw0\kerning0
+Attributname\cell 
+\pard\intbl\itap1\pardeftab720\sa240\qc\partightenfactor0
+\cf0 Typ\cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 Bedeutung\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1413\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth706\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth2599\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f7\b0 \cf0 totalAscent\cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 Double\cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f8\i \cf0 Summe der Anstiege
+\f7\i0 \cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1413\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth706\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth2599\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 totalDescent\cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 Double\cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f8\i \cf0 Summe der Abstiege (opt.)
+\f7\i0 \cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1413\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth706\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth2599\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 minAltitude\cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 Double\cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f8\i \cf0 niedrigster Punkt\cell \row
+
+\itap1\trowd \taflags0 \trgaph108\trleft-108 \trbrdrl\brdrnil \trbrdrt\brdrnil \trbrdrr\brdrnil 
+\clvertalc \clshdrawnil \clwWidth1413\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx2880
+\clvertalc \clshdrawnil \clwWidth706\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx5760
+\clvertalc \clshdrawnil \clwWidth2599\clftsWidth3 \clmart10 \clmarl10 \clmarb10 \clmarr10 \clbrdrt\brdrnil \clbrdrl\brdrnil \clbrdrb\brdrnil \clbrdrr\brdrnil \clpadt20 \clpadl20 \clpadb20 \clpadr20 \gaph\cellx8640
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f7\i0 \cf0 maxAltitude\cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+\cf0 Double\cell 
+\pard\intbl\itap1\pardeftab720\sa240\partightenfactor0
+
+\f8\i \cf0 h\'f6chster Punkt
+\f7\i0 \cell \lastrow\row
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf2 \kerning1\expnd0\expndtw0 \
+\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\
+\
+\pard\pardeftab720\sa274\partightenfactor0
+
+\f9\fs32 \cf3 \expnd0\expndtw0\kerning0
+Die Einheit als Enum definieren:\
+
+\f1\fs28 \cf2 \kerning1\expnd0\expndtw0 \
+enum DistanceUnit \{\
+    case meters\
+    case kilometers\
+    \
+    func convert(_ value: Double) -> Double \{\
+        switch self \{\
+        case .meters: return value\
+        case .kilometers: return value / 1000\
+        \}\
+    \}\
+    \
+    var suffix: String \{\
+        switch self \{\
+        case .meters: return "m"\
+        case .kilometers: return "km"\
+        \}\
+    \}\
+\}\
+\
+
+\f9\fs32 \cf3 \expnd0\expndtw0\kerning0
+Und dann in Ihrer View:\
+\
+@State private var unit: DistanceUnit = .kilometers\
+\
+// Verwendung:\
+Text("\\(unit.convert(distance), specifier: "%.2f") \\(unit.suffix)")\
+\
+\pard\pardeftab720\partightenfactor0
+\cf3 Das w\'fcrde es Ihnen erm\'f6glichen, zwischen Einheiten zu wechseln, wenn Sie das sp\'e4ter wollen.\
+\
+\
+\pard\tx560\tx1120\tx1680\tx2240\tx2800\tx3360\tx3920\tx4480\tx5040\tx5600\tx6160\tx6720\sl324\slmult1\pardirnatural\partightenfactor0
+
+\f1\fs28 \cf2 \kerning1\expnd0\expndtw0 \'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\'97\
+\pard\pardeftab720\partightenfactor0
+
+\f9\fs32 \cf3 \expnd0\expndtw0\kerning0
+\
+\
+}
